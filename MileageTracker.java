@@ -1,31 +1,31 @@
 /**
  * This class models a mileage tracker for a car.
  *
- * @author gcschmit
- * @version 27 September 2020
+ * @author Vivek Ily
+ * @version 6 October, 2020
  */
 public class MileageTracker {
 
-     /**
-      * 2. Define the instance variables (store the obect's attributes):
-      * Specify the visibility (e.g., private)
-      * Public: accessible by any code in any class
-      * Private: only accessible by methods in this class
-      * Specify the type (e.g., double)
-      * Specify the name (e.g. milesDriven)
+     /*
+      * 2. Define the instance variables (store the object's attributes):
+      *        Specify the visibility (e.g., private)
+      *        Public: accessible by any code in any class
+      *        Private: only accessible by methods in this class
+      *        Specify the type (e.g., double)
+      *        Specify the name (e.g. milesDriven)
       *
       * Instance variables differ from local variables in the following ways:
-      * Scoped to the class (accessible in all methods of hte class)
-      * (Lifetime is the same as the object)
-      * Automatically initialized to a default value (0, false, null)
-      * Best practice is not to immediately initialize instance variables
+      *        Scoped to the class (accessible in all methods of hte class)
+      *             (Lifetime is the same as the object)
+      *        Automatically initialized to a default value (0, false, null)
+      *        Best practice is not to immediately initialize instance variables
       */
 
      private double milesDriven; //in units of miles
      private double fuelConsumed; //in units of gallons
      private String vin; //vehicle identification number
 
-     /**
+     /*
       * Default constructor for the MileageTracker class.
       * Initializes the miles driven and fuel consumed to 0 and VIN to null
       */
@@ -67,7 +67,7 @@ public class MileageTracker {
       * @param miles the additional distance, in miles, this car has driven
       */
      public void incrementMilesDriven(double miles) {
-          //TODO: implement later
+          this.milesDriven += miles;
      }
 
      /**
@@ -76,8 +76,7 @@ public class MileageTracker {
       * @return the total number of miles driven
       */
      public double getMilesDriven() {
-          //TODO: implement later
-          return 0.0;
+          return this.milesDriven;
      }
 
      /**
@@ -86,7 +85,7 @@ public class MileageTracker {
       * @param gallons the additional fuel, in gallons, this car has consumed
       */
      public void incrementFuelConsumed(double gallons) {
-
+          this.fuelConsumed += gallons;
      }
 
      /**
@@ -95,9 +94,8 @@ public class MileageTracker {
       * @return the total number of gallons of fuel consumed
       */
      public double getFuelConsumed() {
-          return 0.0;
+          return this.fuelConsumed;
      }
-
 
      /**
       * Returns the current mileage, in miles per gallon
