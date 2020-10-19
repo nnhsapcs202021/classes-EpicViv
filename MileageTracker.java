@@ -134,9 +134,16 @@ public class MileageTracker {
           this.vin = newVIN;
      }
 
+     public String toString(){
+          String str = "[VIN: " + this.getVIN() + "; Miles Drive: " + this.getMilesDriven() + " miles" + "; Fuel Consumed: " + this.getFuelConsumed() + " gallons" + "; Mileage: " + this.getMileage() + " mpg]";
+          return str;
+     }
+
      public static void main(String[] args){
 
+          MileageTracker tracker = new MileageTracker(100, 4);
 
+          System.out.println(tracker);
 
      }
 
