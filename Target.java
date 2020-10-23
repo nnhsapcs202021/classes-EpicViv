@@ -12,25 +12,44 @@ public class Target {
      private int x;
      private int y;
      private Color color;
+     private Color otherColor;
 
      /**
       * Constructs the target with the defined center
       * @param initX x coordinate of center
       * @param initY y coordinate of center
       */
-
      public Target(int initX, int initY){
           this.x = initX;
           this.y = initY;
           this.color = Color.BLACK;
+          this.otherColor = Color.WHITE;
      }
 
+     /**
+      * Constructs the target with the defined center
+      * @param initX x coordinate of center
+      * @param initY y coordinate of center
+      * @param fillColor sets fill color
+      */
      public Target(int initX, int initY, Color fillColor){
           this.x = initX;
           this.y = initY;
           this.color = fillColor;
+          this.otherColor = Color.WHITE;
      }
 
+     public Target(int initX, int initY, Color fillColor, Color fillColor2){
+          this.x = initX;
+          this.y = initY;
+          this.color = fillColor;
+          this.otherColor = fillColor2;
+     }
+
+     /**
+      * Defines the shapes of the Target and draws them on the canvas
+      * @param g2 the canvas
+      */
      public void draw(Graphics2D g2){
           Ellipse2D.Double ring1 = new Ellipse2D.Double(this.x - 100, this.y - 100, 200, 200);
           Ellipse2D.Double ring2 = new Ellipse2D.Double(this.x - 75, this.y - 75, 150, 150);
@@ -41,7 +60,7 @@ public class Target {
           g2.draw(ring1);
           g2.fill(ring1);
 
-          g2.setPaint(Color.WHITE);
+          g2.setPaint(this.otherColor);
           g2.draw(ring2);
           g2.fill(ring2);
 
@@ -49,7 +68,7 @@ public class Target {
           g2.draw(ring3);
           g2.fill(ring3);
 
-          g2.setPaint(Color.WHITE);
+          g2.setPaint(this.otherColor);
           g2.draw(ring4);
           g2.fill(ring4);
 
