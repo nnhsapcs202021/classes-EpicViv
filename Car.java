@@ -14,8 +14,8 @@ public class Car
 
    /**
       Constructs a car with a given top left corner.
-      @param x the x coordinate of the top left corner
-      @param y the y coordinate of the top left corner
+      @param initialX the x coordinate of the top left corner
+      @param initialY the y coordinate of the top left corner
    */
    public Car(int initialX, int initialY)
    {
@@ -29,18 +29,19 @@ public class Car
    */
    public void draw(Graphics2D g2)
    {
-      Rectangle2D.Double body = new Rectangle2D.Double(this.xLeft, this.yTop + 10, 60, 10);      
-      Ellipse2D.Double frontTire 
-         = new Ellipse2D.Double(this.xLeft + 10, this.yTop + 20, 10, 10);
-      Ellipse2D.Double rearTire 
-         = new Ellipse2D.Double(this.xLeft + 40, this.yTop + 20, 10, 10);
+      Rectangle2D.Double body = new Rectangle2D.Double(this.xLeft, this.yTop + 10, 60, 10);
+      Ellipse2D.Double frontTire = new Ellipse2D.Double(this.xLeft + 10, this.yTop + 20, 10, 10);
+      Ellipse2D.Double rearTire = new Ellipse2D.Double(this.xLeft + 40, this.yTop + 20, 10, 10);
 
       // The bottom of the front windshield
       Point2D.Double r1 = new Point2D.Double(this.xLeft + 10, this.yTop + 10);
+
       // The front of the roof
       Point2D.Double r2 = new Point2D.Double(this.xLeft + 20, this.yTop);
+
       // The rear of the roof
       Point2D.Double r3 = new Point2D.Double(this.xLeft + 40, this.yTop);
+
       // The bottom of the rear windshield
       Point2D.Double r4 = new Point2D.Double(this.xLeft + 50, this.yTop + 10);
 
