@@ -1,8 +1,8 @@
-import javax.swing.JFrame; import java.awt.*;
+import javax.swing.*;
 
 public class TargetViewer {
 
-     public static void main(String[] args){
+     public static void main(String[] args) {
           JFrame frame = new JFrame();
 
           frame.setSize(1000, 1000);
