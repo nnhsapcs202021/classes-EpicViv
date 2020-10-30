@@ -11,8 +11,13 @@ public class CaesarCipher {
 
      private String keyphrase;
 
+     public CaesarCipher(String initialKeyphrase){
+          // prepare the keyphrase by removing duplicate letters
+          this.compressKeyphrase(initialKeyphrase);
+     }
+
     /**
-     * Returns a string that describes the average time to crack the ciper, in several formats, based on the specified number of seconds per guess.
+     * Returns a string that describes the average time to crack the cipher, in several formats, based on the specified number of seconds per guess.
      *
      * @param secPerGuess the number of seconds to evaluate each attempt
      * @return a string that describes the average time to crack the cipher
@@ -39,8 +44,129 @@ public class CaesarCipher {
 
         long totalSeconds = this.calculateAverageTimeToCrack(secPerGuess);
 
-        return "";
+        /*
+         * Use integer division to calculate how many whole minutes are in the specified number of seconds.
+         *
+         * Integer division is like // operator in Python because it discards the remainder (truncates).
+         *
+         * Java does integer division when both operands are integer types
+         * It does floaiting-point division when one or both operands are floating-point types.
+         *
+         * For example:
+         *          3 / 4 = 0           (3 and 4 are int literals)
+         *          3.0 / 4 = 0.75      (3.0 is a double literal)
+         */
+        long wholeMinutes = totalSeconds / SECONDS_FOR_EVERY_MINUTE;
+
+        /*
+         * Use the modulo operator to calculate how many seconds are left over.
+         *
+         * The mod operator (%) returns the remainder of the division operation.
+         *
+         * It can be very useful when paired with integer division.
+         *
+         * for example:
+         *     7 % 2 = 1
+         *     11 % 3 = 2
+         *     6 % 2 = 0
+         *     4 % 11 = 4
+         * % 2 is frequently used to test odd/even
+         */
+
+         long leftoverSeconds = totalSeconds % SECONDS_FOR_EVERY_MINUTE;
+
+         long wholeHours = wholeMinutes / MINUTES_FOR_EVERY_HOUR;
+         long leftoverMinutes = wholeMinutes % MINUTES_FOR_EVERY_HOUR;
+
+         long wholeDays = wholeHours / HOURS_FOR_EVERY_DAY;
+         long leftoverHours = wholeHours % HOURS_FOR_EVERY_DAY;
+
+         long wholeYears = wholeDays / DAYS_FOR_EVERY_YEAR;
+         long leftoverDays = wholeDays % DAYS_FOR_EVERY_YEAR;
+
+         desc = "Average time to crack: " + wholeYears + " years, " + leftoverDays + " days, " + leftoverHours + " hours, " + leftoverMinutes + " minutes, " + leftoverSeconds + " seconds\n";
+
+        return desc;
     }
+
+     /**
+      * Compresses the specified keyphrase by remoiving all deplicate letters.
+      *
+      * @param keyphrase the keyphrase to compress
+      */
+     public void compressKeyphrase(String keyphrase){
+          this.keyphrase = "";
+
+          /*
+           * length
+           *        returns the number of characters in the string
+           */
+          int keyphraseLength = keyphrase.length();
+
+          for (int i = 0; i < keyphraseLength; i++){
+               /*
+
+               charAt
+                    returns the character (of type hat) at the specified index (0-based)
+
+               keyphrase:
+               C A E S A R
+               0 1 2 3 4 5    <= indices
+
+               length = 6
+                */
+               char letter = keyphrase.charAt(i);
+
+               /*
+
+               substring
+                    returns part of the string starting at the first specified index up to, but not including, the second specified index
+                    if only on index is specified, returns part of the string starting at the specified indesx through the end of the string.
+                    substring does not support negative indices
+                         For example, instead of -2, we would specifyy keyphrase.length() - 2
+
+               keyphrase:
+               C A E S A R
+               0 1 2 3 4 5    <= indices
+
+               length = 6
+               */
+               String restOfKeyphrase = keyphrase.substring(i + 1);
+               // same as: keyphrase.substring(i + 1, keyphrase.length());
+
+               /*
+
+               indexOf
+                    returns the index of the start of the first occurrence of the specified string
+                    if not found, returns -1
+
+               restOfKeyphrase:
+               A E S A R
+               0 1 2 3 4      <= indices
+
+               length = 5
+                */
+               int index = restOfKeyphrase.indexOf(letter);
+
+               /*
+
+               String concatenation
+                    + symbol is the string concatenation operator
+                    concatenates the second Strong operand to the end of the first String operand
+                    if one or both operands are a String type, + is the string concatenation operator (operands are converted to String object_
+                    Otherwise, the + is the addition operator
+
+               Example:
+
+               int x = 7;
+               String xAsString = "" + x;    // xAsString => "7"
+                */
+               if(index ==  -1){
+                    this.keyphrase = this.keyphrase + letter;
+                    // same as: this.keyphrase += letter;
+               }
+          }
+     }
 
 
     /**
