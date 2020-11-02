@@ -7,6 +7,19 @@
  * @version 21 September 2018
  */
 public class CaesarCipher {
+     /*
+
+     static: one value for the variable for all objects of the class
+          This is like class attributes in Python.
+          Static class variables can be accessed directly through the class
+               (e.g., CaesarCipher.ALPHABET, Math.PI, Color.RED).
+
+     String literal
+           is an instance of the String class (not a primitive) delineated by double quotes nad must be defined on a single line
+
+     "ABCDEFGHIJKLMNOPQRSTUVWXYZ" is a string literal equivalent to:
+          new String("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+      */
      private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
      private String keyphrase;
@@ -248,5 +261,41 @@ public class CaesarCipher {
           // average time is half the worst time since the best time is cracking the
           //  cipher on the first attempt
           return worstCaseTimeToCrack / 2;
+     }
+
+     /*
+     This method is static, and therefore, is independent of the state of a CasesarCipher object.
+     As a result , this method may be invoked on the class instead of a variable that references an object (e.g., CaesarCipher.generateKeyphrase(7);)
+     In addition, this method cannot access any instance variables.
+      */
+
+     /**
+      * Generates a pseudorandom keyphrase of the specified length in characters.
+      * @param length the number of characters in the keyphrase
+      * @return a pseudorandom keyphrase of the specified length
+      */
+     public static String generateKeyphrase(int length){
+          String keyphrase = "";
+
+          for(int i = 0; i < length; i++){
+               /*
+
+               The Math.random static method returns a double [0.0 ... 1.0)
+
+               Often we use the following algorithm to generate random integers from [min ... max]:
+
+               int n = (int)((Math.random() * (max - min + 1)) + min);
+
+               For example: generate a random int [0 ... 25]
+
+               ABCDEFGHIJKLMNOPQRSTUVWXYZ
+               0           ...          25
+                */
+
+               int letterIndex = (int)(Math.random() *  26);
+               keyphrase += CaesarCipher.ALPHABET.substring(letterIndex, letterIndex + 1);
+          }
+
+          return keyphrase;
      }
 }
